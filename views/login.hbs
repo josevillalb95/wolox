@@ -1,0 +1,51 @@
+<div class="cont">
+  <form class="form sign-in" action="/users/login"  method="POST"  >
+    <h2>Bienvenido</h2>
+    <label>
+      <span>Usuario</span>
+      <input type="text"  name="username" required="" />
+    </label>
+    <label>
+      <span>Contraseña</span>
+      <input type="password" name="password" required="" />
+    </label>
+    <button type="submit" class="submit">Login</button>
+  </form>
+  <div class="sub-cont">
+    <div class="img">
+      <div class="img__btn">
+        <span class="m--up">Registro → </span>
+        <span class="m--in"> ← Login</span>
+      </div>
+    </div>
+    <form class="form sign-up" action="/users/registrarse"  method="POST" >  
+      <label>
+        <span>Usuario</span>
+        <input type="text" name="username" required="" />
+      </label>
+      <label>
+        <span>Nombre</span>
+        <input type="text" name="name" required=""/>
+      </label>
+      <label>
+        <span>Apellido</span>
+        <input type="text"  name="lastname" required="" />
+      </label>
+      <label>
+        <span>Contraseña</span>
+        <input type="password"  name="password" required="" />
+      </label>
+      {{#if memoria.monedas}}
+      <label>
+        <span>Moneda preferida</span>
+        <select name="monedaPreferida" >
+          {{#each memoria.monedas}}
+            <option value="{{this}}">{{this}}</option>
+          {{/each}}
+        </select>
+      </label>
+      {{/if}}
+      <button type="submit" class="submit">Registrarse</button>
+    </form>
+  </div>
+</div>

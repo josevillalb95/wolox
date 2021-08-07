@@ -1,0 +1,109 @@
+<div class="contenedor ">
+	<h1>{{title}}</h1>
+</div>
+<div class="contenedor perfil">
+	<p>Hola {{user.name}} {{user.lastname}}</p>
+	<div>
+		<span>Orden de monedas</span>
+		<select class="cambioConfig" name="monedaOrden" >
+			<option value="asendente" {{#ifCond "asendente" user.monedaOrden}} selected="" {{/ifCond}} >Asendente</option>
+			<option value="desendente" {{#ifCond "desendente" user.monedaOrden}} selected="" {{/ifCond}} >Desendente</option>
+		</select>
+	</div>
+	<div>
+		<span>Moneda preferida</span>
+		<select  class="cambioConfig" name="monedaPreferida" >  
+			{{#each monedas}}
+			<option value="{{this}}" {{#ifCond this ../user.monedaPreferida}} selected="" {{/ifCond}}>{{this}}</option>
+			{{/each}}
+		</select>
+	</div>
+</div>
+
+<div class="monedas multiple-items">
+
+{{#each monedaDestacada}}
+	<div class="coin"> 
+		<div class="contImg {{id}}">
+			<img src="{{image}}" alt="">
+				<p>{{name}}</p>
+		</div>
+		<div class="contText">
+		
+			<p class="decorateFechaGmt" data-date="{{last_updated}}"></p>
+		</div>
+
+
+		<table class="table ">
+		<thead>
+		<tr>
+		<th scope="col">Moneda</th>
+		<th scope="col">Actual</th>
+		<th scope="col">1 Dia</th>
+		<th scope="col">7 Dias</th>
+		<th scope="col">14 Dias</th>
+		<th scope="col">30 Dias</th>
+
+		</tr>
+		</thead>
+		<tbody>
+
+
+		{{#each infoMonedas}}
+		<tr>
+			<td>{{key}}</td>
+			<td>{{actual}}</td>
+			{{#with value_1d}}
+			<td class="valor_{{positivo}}" > % {{porcentaje}} </td>
+			{{/with}}
+			{{#with value_7d}}
+			<td class="valor_{{positivo}}" >% {{porcentaje}}</td>
+			{{/with}}
+			{{#with value_14d}}
+			<td class="valor_{{positivo}}" >% {{porcentaje}}</td>
+			{{/with}}
+			{{#with value_30d}}
+			<td class="valor_{{positivo}}" >% {{porcentaje}} </td>
+			{{/with}}
+		</tr>
+		{{/each}}
+		</tbody>
+		</table>
+		<label for="checkbox_{{id}}" class="labelStar" >★	<input type="checkbox" checked="" value="{{id}}" id="checkbox_{{id}}"></label>
+
+	</div>
+
+{{/each}}
+</div>
+
+<div class="monedas">
+<table class="table crypto-table">
+<thead>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Symbol</th>
+    <th scope="col">Valor preferido</th>
+    <th scope="col">Ultima actualizacion</th>
+    <th scope="col">FAV</th>
+  </tr>
+</thead>
+<tbody>
+	{{#each coins}}
+	<tr class="jooo">
+		<td><img src="{{image}}" class="{{id}}" /><span class="text-warning"> {{name}}</span></td>
+		<td>{{symbol}}</td>
+		<td>{{monedaPreferida}} ( {{../user.monedaPreferida}} )</td>
+		<td class="decorateFechaGmt" data-date="{{last_updated}}"></td>
+		<td><label for="checkbox_{{id}}" class="labelStar" >★	<input type="checkbox" value="{{id}}" id="checkbox_{{id}}"></label></td>
+	</tr>
+	{{/each}}
+
+
+<tbody>
+
+
+</div>
+
+
+
+<div id="dialog-confirm" title="" style="display:none;"></div>
