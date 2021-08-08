@@ -2,8 +2,6 @@ module.exports = function(memoria,model){
 	const CoinGecko = require('coingecko-api');
 	const CoinGeckoClient = new CoinGecko();
 	var ciclosScrapper = async() => {
-		// let coinsfetch = await CoinGeckoClient.coins.fetch('bitcoin');
-		// console.log(JSON.stringify(coinsfetch))
 		let coins = null
 		try{
 			coins = await CoinGeckoClient.coins.all();

@@ -41,8 +41,6 @@ module.exports = function(options){
 	 		let msj='Eliminado de favoritos correctamente'
 	 		if(datos.add && datos.add=="true"){
 	 			msj='Agregado a favoritos correctamente'
-	 			// update= { "$addToSet": { "interes": datos.valor } }
-
 	 			model.searchUser({"username":decoded["username"],"password":decoded["password"]}).exec(function(err,user){
 	 				if(!user)
 	 					return res.status(400).send('Error al detectar su session')
@@ -61,21 +59,13 @@ module.exports = function(options){
 	 					res.status(200).send(msj);
 
 	 				})
-
-
-			 	// 	model.modifyUser({"username":decoded["username"] },update,function(err){
-			 	// 		if(err){console.log("error update ",err)}
-					// 	return res.status(200).send(msj);
-					// })
 				})
-
 	 		}else{
 		 		model.modifyUser({"username":decoded["username"] },update,function(err){
 		 			if(err){console.log("error update ",err)}
 					return res.status(200).send(msj);
 				})
 	 		}
-
  			
 		})
 	})	
@@ -85,7 +75,7 @@ module.exports = function(options){
 		JWT.validar(req.cookies.tokenJWT,function(err, decoded){
 			if(err||!decoded)
 	 			return res.status(400).send('Su sesion caduco');
-	 		var update={}
+	 		let update={}
 			if( datos.monedaPreferida && options.memoria["monedas"].indexOf(datos.monedaPreferida)== -1)
 	 			return res.status(400).send('Datos Erroneos');
 	 		if(datos.monedaOrden)
@@ -111,7 +101,6 @@ module.exports = function(options){
 				datosLimpios[campo]=datos[campo]
 		})
 		if(!camposCompletos){
-			console.log("datos incompletos",datosLimpios)
 			return res.status(400).send('Datos incompletos');
 		}
 

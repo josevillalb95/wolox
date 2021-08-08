@@ -61,7 +61,6 @@ module.exports = function(options){
 					}
 				}
 			})
-
 			if(monedaDestacada.length){
 				monedaDestacada.sort(function(a, b) {
 				  return b["actual"]- a["actual"];
@@ -69,11 +68,6 @@ module.exports = function(options){
 				if( user.monedaOrden && user.monedaOrden=="asendente")
 					monedaDestacada.reverse()
 			}
-
-
-
-
-
  			res.render('index', { title: 'Wolox Cryptocurrencies Monitor' ,user, coins,monedaDestacada, monedas:memoria.monedas });
  		})
 	})
